@@ -22,7 +22,7 @@ public class Team {
 		}
 	}
 
-	public void addPlayer(List<Players> players) {
+	public void addPlayer(ArrayList<Players> players) {
 		for(Players p : players){
 			team.add(p);
 		}
