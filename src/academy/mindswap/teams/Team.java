@@ -6,9 +6,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Team {
+	private String name;
 	private Set<Players> team;
 
-	public Team() {
+	public Team(String name) {
+		this.name = name;
 		team = new HashSet<>();
 	}
 
@@ -30,5 +32,9 @@ public class Team {
 			overall += p.getOverall();
 		}
 		return overall / team.size();
+	}
+
+	public Team(String name) {
+		this.name = name;
 	}
 }
