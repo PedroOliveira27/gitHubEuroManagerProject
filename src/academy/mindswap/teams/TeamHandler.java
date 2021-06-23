@@ -3,12 +3,13 @@ package academy.mindswap.teams;
 import academy.mindswap.players.Players;
 import academy.mindswap.players.Position;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class TeamHandler {
 
-	public static void createTeam(Team team, List<Players> players) {
+	public static void createTeam(Team team, ArrayList<Players> players) {
 		team.addPlayer(players);
 	}
 
