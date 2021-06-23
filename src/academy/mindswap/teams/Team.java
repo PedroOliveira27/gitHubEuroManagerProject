@@ -36,7 +36,7 @@ public class Team {
 		return overall / team.size();
 	}
 
-	public Team(String name) {
-		this.name = name;
+	public String getName() {
+		return name;
 	}
 }
