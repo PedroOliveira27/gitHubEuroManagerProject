@@ -12,7 +12,7 @@ public class Team {
 		team = new HashSet<>();
 	}
 
-	public void printPlayerList(){
+	public void printPlayerList() {
 		for (Players p : team) {
 			System.out.print(p.getName() + " | " +
 					p.getOverall() + " | " +
@@ -20,11 +20,15 @@ public class Team {
 		}
 	}
 
+	public void addPlayer(Players player) {
+		team.add(player);
+	}
+
 	public int getOverall() {
 		int overall = 0;
 		for (Players p : team) {
 			overall += p.getOverall();
 		}
-		return overall/team.size();
+		return overall / team.size();
 	}
 }
