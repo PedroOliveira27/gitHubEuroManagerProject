@@ -1,6 +1,6 @@
 package academy.mindswap.teams;
 
-import academy.mindswap.Players;
+import academy.mindswap.players.Players;
 
 import java.util.HashSet;
 import java.util.Set;
