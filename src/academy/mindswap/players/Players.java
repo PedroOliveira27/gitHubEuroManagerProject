@@ -1,4 +1,4 @@
-package academy.mindswap;
+package academy.mindswap.players;
 
 public class Players {
 
