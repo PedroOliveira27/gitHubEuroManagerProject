@@ -15,8 +15,8 @@ public class Team {
 	public void printPlayerList(){
 		for (Players p : team) {
 			System.out.print(p.getName() + " | " +
-					p.getOverall + " | " +
-					p.getPosition);
+					p.getOverall() + " | " +
+					p.getPositionType());
 		}
 	}
 
