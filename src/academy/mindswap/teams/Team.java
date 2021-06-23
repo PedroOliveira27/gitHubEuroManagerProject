@@ -15,17 +15,28 @@ public class Team {
 	}
 
 	public void printPlayerList() {
+		System.out.println("Starting team for " + name + ":");
+		System.out.println(team.size() + " players.");
 		for (Players p : team) {
-			System.out.print(p.getName() + " | " +
+			System.out.println(p.getName() + " | " +
 					p.getOverall() + " | " +
 					p.getPositionType());
 		}
 	}
 
-	public void addPlayer(ArrayList<Players> players) {
+	public void addPlayer(List<Players> players) {
 		for(Players p : players){
 			team.add(p);
 		}
+	}
+
+	public Players choosePlayer(String playerName) {
+		for(Players p : team){
+			if (p.getName().equals(playerName)){
+				return p;
+			}
+		}
+		return null;
 	}
 
 	public int getOverall() {
