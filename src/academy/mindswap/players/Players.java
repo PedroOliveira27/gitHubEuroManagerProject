@@ -8,6 +8,13 @@ public class Players {
     private Position positionType;
     private int overall;
 
+    public Players(String name, int age, Position positionType, int overall) {
+        this.name = name;
+        this.age = age;
+        this.positionType = positionType;
+        this.overall = overall;
+    }
+
     public String getName() {
         return name;
     }
