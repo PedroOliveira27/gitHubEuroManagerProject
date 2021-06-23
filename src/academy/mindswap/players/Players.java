@@ -7,5 +7,20 @@ public class Players {
     private int age;
     private Position positionType;
     private int overall;
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Position getPositionType() {
+        return positionType;
+    }
+
+    public int getOverall() {
+        return overall;
+    }
 }
