@@ -9,11 +9,12 @@ import java.util.List;
 
 public class TeamHandler {
 
-	public static void createTeam(Team team, ArrayList<Players> players) {
+	public static Team createTeam(Team team, List<Players> players) {
 		team.addPlayer(players);
+		return team;
 	}
 
-	private static List<Players> portugal = Arrays.asList(
+	public static List<Players> portugal = Arrays.asList(
 			new Players("Cristiano Ronaldo", 36, Position.STRIKER, 97),
 			new Players("Bernardo Silva", 26, Position.STRIKER, 88),
 			new Players("Joao Felix", 21, Position.STRIKER, 86),
@@ -27,7 +28,7 @@ public class TeamHandler {
 			new Players("Rui Patricio", 33, Position.GOOLKEEPER, 85)
 	);
 
-	private static List<Players> germany = Arrays.asList(
+	public static List<Players> germany = Arrays.asList(
 			new Players("Leroy Sané", 25, Position.STRIKER, 88),
 			new Players("Serge Gnabry", 25, Position.STRIKER, 87),
 			new Players("Timo Werner", 25, Position.STRIKER, 86),
@@ -41,7 +42,7 @@ public class TeamHandler {
 			new Players("Manuel Neuer",35, Position.GOOLKEEPER, 84)
 	);
 
-	private static List<Players> france = Arrays.asList(
+	public static List<Players> france = Arrays.asList(
 			new Players("Kylian Mbappé", 22, Position.STRIKER, 91),
 			new Players("Antoine Griezmann", 30, Position.STRIKER, 90),
 			new Players("Oliver Giroud",34, Position.STRIKER, 83),
