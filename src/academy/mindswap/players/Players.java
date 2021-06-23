@@ -23,4 +23,8 @@ public class Players {
     public int getOverall() {
         return overall;
     }
+
+    public void setOverall(int overall) {
+        this.overall = overall;
+    }
 }
