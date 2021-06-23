@@ -2,16 +2,16 @@ package academy.mindswap.teams;
 
 import academy.mindswap.players.Players;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Team {
 	private String name;
-	private Set<Players> team;
+	private List<Players> team;
 
 	public Team(String name) {
 		this.name = name;
-		team = new HashSet<>();
+		team = new ArrayList<>();
 	}
 
 	public void printPlayerList() {
@@ -22,8 +22,10 @@ public class Team {
 		}
 	}
 
-	public void addPlayer(Players player) {
-		team.add(player);
+	public void addPlayer(List<Players> players) {
+		for(Players p : players){
+			team.add(p);
+		}
 	}
 
 	public int getOverall() {
