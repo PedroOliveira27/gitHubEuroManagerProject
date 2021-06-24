@@ -1,4 +1,4 @@
-package Game;
+package academy.mindswap.Game;
 
 import academy.mindswap.teams.Team;
 
