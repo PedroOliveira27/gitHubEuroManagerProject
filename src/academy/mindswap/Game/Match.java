@@ -5,6 +5,9 @@ import academy.mindswap.teams.Team;
 public class Match {
     private Team team1;
     private Team team2;
+    private int team1Score;
+    private int team2Score;
+
 
     public Match(Team team1, Team team2) {
         this.team1 = team1;
@@ -12,12 +15,12 @@ public class Match {
     }
 
 
-    public void play() {
+    public Team play() {
         System.out.println("Match day!!!Welcome to the stadium!Today\n " +
                 team1.getName() + " is playing against " + team2.getName());
-        int team1Score = 0;
-        int team2Score = 0;
-        int matchTime = 0;
+         team1Score = 0;
+         team2Score = 0;
+        double matchTime = 0;
 
         while (matchTime < 90) {
             Team team = aGoalIsScored();
@@ -27,14 +30,28 @@ public class Match {
                 team2Score++;
             System.out.println("[" + team1.getName() + " " + team1Score + "]" + " - " +
                     "[" + team2.getName() + " " + team2Score + "]");
-            matchTime += 15;
+            matchTime += 22.5;
+
+            if (matchTime == 45) {
+                System.out.println("It`s half-time.Its time to give the players a motivational speech!.Lets start the second half");
+            }
+
+            if (team1Score > team2Score) {
+                System.out.println(team1.getName() + " has won the game");
+
+            }
+
 
         }
+        Team winner = checkWhoWon();
+
+
         System.out.println("The game has ended!!The final score is \n" +
                 "[" + team1.getName() + " " + team1Score + "]" + " - " +
                 "[" + team2.getName() + " " + team2Score + "]");
 
 //        System.out.println("The starting eleven for " + team1.getName() + " is ");
+        return winner;
     }
 
     private Team aGoalIsScored() {
@@ -63,18 +80,39 @@ public class Match {
 
     private boolean calculateGoalProbability(Team team, int totalOverall) {
         System.out.println(team.getName() + " has a great chance to score");
-        int chanceToScore = (team.getOverall() / totalOverall) * 100;
+
+        int chanceToScore = (team.getOverall() * 100) / totalOverall;
+        System.out.println(chanceToScore);
         if (chanceToScore <= (int) (Math.random() * 100)) {
             System.out.println(team.getName() + " Score a gooooooooooooaaaaaal!!!");
             return true;
         }
+
         System.out.println(team.getName() + " wasted a great chance!!");
         return false;
 
 
     }
 
+    public Team checkWhoWon() {
 
+        if (team1Score > team2Score) {
+            System.out.println(team1.getName() + " has won the game");
+
+            return team1;
+
+        } else if (team1Score < team2Score) {
+            System.out.println(team2.getName() + " has won the game");
+
+            return team2;
+
+        } else {
+            System.out.println("At the 90 minutes mark the games is tied");
+            return null;
+        }
+
+
+    }
 }
 
 
