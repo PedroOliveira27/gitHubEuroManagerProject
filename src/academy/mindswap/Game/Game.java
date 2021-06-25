@@ -17,19 +17,24 @@ public class Game {
     }
 
 
-    public void RandomGame (){
+    public Team RandomGame (){
         int max=3;
         int min=0;
-        int randomFirstTeamPlay = (int) (Math.random() * (max-min+1))+min;
-        System.out.println(randomFirstTeamPlay);
-        int randomSecontTeamPlay = (int) (Math.random() * (max-min+1))+min;
-        System.out.println(randomSecontTeamPlay);
-        if (randomFirstTeamPlay != randomSecontTeamPlay){
-            System.out.println(group.createGroup.get(randomFirstTeamPlay).getName());
-            System.out.println(group.createGroup.get(randomSecontTeamPlay).getName());
-        }
+        Team firstTeam;
+        int FirstTeamPlay = (int) (Math.random() * (max-min+1))+min;
+        firstTeam = group.createGroup.get(FirstTeamPlay);
+       return firstTeam;
+    }
 
-
+    public void play(){
+        group.ChooseTeam("Portugal");
+        group.ChooseTeam("France");
+        group.ChooseTeam("Hungary");
+        group.ChooseTeam("Germany");
+        Team team1 = RandomGame();
+        Team team2 = RandomGame();
+        Match match = new Match(team1, team2);
+        match.start();
     }
 
 }
