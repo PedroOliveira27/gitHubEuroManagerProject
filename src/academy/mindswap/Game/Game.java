@@ -53,7 +53,7 @@ public class Game {
             Match match2 = new Match(match.getWinTeamList().get(0), match1.getWinTeamList().get(0));
             System.out.println("Welcome to the final!!");
             match2.start();
-            System.out.println(match2.getWinTeamList().get(0).getName() + " won Euro 2020!!!!!! Congratulations to the champions");
+            System.out.println(match2.getWinTeamList().get(0).getName() + "  won Euro 2020!!!!!! Congratulations to the champions");
             return;
 
         }
