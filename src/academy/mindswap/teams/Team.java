@@ -38,6 +38,11 @@ public class Team {
 		}
 		return null;
 	}
+	public Players choosePlayer(int playerIndex) {
+
+		return team.get(playerIndex);
+	}
+
 
 	public int getOverall() {
 		int overall = 0;
