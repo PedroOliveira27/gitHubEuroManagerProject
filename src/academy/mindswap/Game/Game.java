@@ -31,10 +31,25 @@ public class Game {
         group.ChooseTeam("France");
         group.ChooseTeam("Hungary");
         group.ChooseTeam("Germany");
-        Team team1 = RandomGame();
-        Team team2 = RandomGame();
-        Match match = new Match(team1, team2);
-        match.start();
+        Team team1 = null;
+        Team team2 = null;
+        team1 = randomTeam(team1);
+        System.out.println(team1.getName());
+        team2 = randomTeam(team1);
+        System.out.println(team2.getName());
+        if (team1 != team2){
+            Match match = new Match(team1, team2);
+            match.start();
+        }
+
+    }
+
+    public Team randomTeam(Team team){
+       Team team1 = RandomGame();
+      while (team1 == team){
+          team1 = RandomGame();
+      }
+       return team1;
     }
 
 }
