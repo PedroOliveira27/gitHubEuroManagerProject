@@ -70,6 +70,7 @@ public class Match {
                 System.out.println("Penalties!");
                 penalties();
 
+
             } else if (maxMatchTime == 90) {
                 System.out.println("Over Time!");
             }
@@ -131,6 +132,7 @@ public class Match {
             loseTeamList.add(team1);
             return team2;
 
+
         } else {
             return null;
         }
@@ -147,8 +149,11 @@ public class Match {
         int penaltiesWinner = (int) (Math.random() * 3);
         if (penaltiesWinner == 1) {
             System.out.println(team1.getName() + " won the game after the penalties");
+            winTeamList.add(team1); // alterado sujeito a aprovaçao de Angelo
+
         } else {
             System.out.println(team2.getName() + " won the game after penalties");
+            winTeamList.add(team2); // alterado sujeito a aprovaçao de Angelo
 
 
         }
@@ -156,7 +161,13 @@ public class Match {
 
     }
 
+    public List<Team> getWinTeamList() {
+        return winTeamList;
+    }
 
+    public List<Team> getLoseTeamList() {
+        return loseTeamList;
+    }
 }
 
 
