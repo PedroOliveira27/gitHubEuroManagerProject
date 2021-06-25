@@ -1,6 +1,7 @@
 package academy.mindswap.Game;
 
 import academy.mindswap.teams.Team;
+import academy.mindswap.teams.TeamHandler;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,16 +42,27 @@ public class Match {
     double currentmatchTime = 0;
         while (currentmatchTime < maxMatchTime) {
             Team team = aGoalIsScored();
-            if (team == team1)
+            if (team == team1){
                 team1Score++;
-            if (team == team2)
+            playersDidGoal(team1);
+        }
+            if (team == team2) {
                 team2Score++;
+            playersDidGoal(team2);
+            }
             System.out.println("[" + team1.getName() + " " + team1Score + "]" + " - " +
                     "[" + team2.getName() + " " + team2Score + "]");
             if (maxMatchTime/2 ==currentmatchTime){
                 System.out.println("It's half time! Are you ready ? Let's go TEAM!");
             }
             currentmatchTime += (maxMatchTime / 4);
+        }
+        if  (team1Score == team2Score){
+            if (maxMatchTime == 30){
+                System.out.println("Penalties!");
+            } else if(maxMatchTime == 90){
+                System.out.println("Over Time!");
+            }
         }
         return checkWhoWon();
     }
@@ -109,11 +121,17 @@ public class Match {
             return team2;
 
         } else {
-            System.out.println("At the 90 minutes mark the games is tied");
             return null;
         }
     }
-}
+
+    public void playersDidGoal(Team team){
+        int randomPlayerGoal = (int) (Math.random()*(3-0+1)+0);
+        System.out.println("CONGRATULATION: " +team.choosePlayer(randomPlayerGoal).getName().toUpperCase());
+    }
+
+    }
+
 
 
 
