@@ -23,17 +23,17 @@ public class Groups {
         if (teamName.equals("Germany")) {
             Team team = TeamHandler.createTeam(new Team("Germany"), TeamHandler.germany);
             createGroup.add(team);
-           removeTeams(teamName);
+            removeTeams(teamName);
         }
         if (teamName.equals("France")) {
             Team team = TeamHandler.createTeam(new Team("France"), TeamHandler.france);
             createGroup.add(team);
-           removeTeams(teamName);
+            removeTeams(teamName);
         }
         if (teamName.equals("Hungary")) {
             Team team = TeamHandler.createTeam(new Team("Hungary"), TeamHandler.hungary);
             createGroup.add(team);
-           removeTeams(teamName);
+            removeTeams(teamName);
         }
 
     }
@@ -64,7 +64,6 @@ public class Groups {
 ////
 //
 //    }
-
 
 
     public void addTeams(String team) {
