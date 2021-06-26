@@ -1,13 +1,13 @@
 package academy.mindswap.Game;
 
-import academy.mindswap.players.Players;
 import academy.mindswap.players.Position;
 import academy.mindswap.teams.Team;
-import academy.mindswap.teams.TeamHandler;
+import academy.mindswap.util.Messages;
+import academy.mindswap.util.RandomGenerator;
+
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 public class Match {
     private Team team1;
@@ -26,8 +26,8 @@ public class Match {
 
 
     public Team start() {
-        System.out.println("Match day!!!Welcome to the stadium!Today\n " +
-                team1.getName() + " is playing against " + team2.getName());
+        System.out.printf(Messages.START_GAME,
+                team1.getName(), team2.getName());
         team1Score = 0;
         team2Score = 0;
         double matchTime = 0;
@@ -38,9 +38,8 @@ public class Match {
             teamWinner = play(30);
         }
         if (team1Score != team2Score) {
-            System.out.println("The game has ended!!The final score is \n" +
-                    "[" + team1.getName() + " " + team1Score + "]" + " - " +
-                    "[" + team2.getName() + " " + team2Score + "]");
+            System.out.printf(Messages.END_GAME, team1.getName(), team1Score, team2.getName(), team2Score);
+
 
         }
         return teamWinner;
@@ -52,30 +51,32 @@ public class Match {
             Team team = aGoalIsScored();
             if (team == team1) {
                 team1Score++;
-                playersDidGoal(team1);
+                playerScore(team1);
+                System.out.printf(Messages.CURRENT_SCORE, team1.getName(), team1Score, team2.getName(), team2Score);
             }
             if (team == team2) {
                 team2Score++;
-                playersDidGoal(team2);
+                playerScore(team2);
+                System.out.printf(Messages.CURRENT_SCORE, team1.getName(), team1Score, team2.getName(), team2Score);
             }
-            System.out.println("[" + team1.getName() + " " + team1Score + "]" + " - " +
-                    "[" + team2.getName() + " " + team2Score + "]");
+
             if (maxMatchTime / 2 == currentmatchTime) {
-                System.out.println("It's half time! Are you ready ? Let's go TEAM!");
+                System.out.println(Messages.HALF_TIME);
+                System.out.printf(Messages.CURRENT_SCORE, team1.getName(), team1Score, team2.getName(), team2Score);
             }
             currentmatchTime += (maxMatchTime / 4);
         }
         if (team1Score == team2Score) {
             if (maxMatchTime == 30) {
-                System.out.println("Penalties!");
+                System.out.println(Messages.PENALTIES);
                 penalties();
 
 
             } else if (maxMatchTime == 90) {
-                System.out.println("Over Time!");
+                System.out.printf(Messages.OVER_TIME);
             }
         }
-//        checkWhoScore();
+
         return checkWhoWon();
     }
 
@@ -104,15 +105,15 @@ public class Match {
 
 
     private boolean calculateGoalProbability(Team team, int totalOverall) {
-        System.out.println(team.getName() + " has a great chance to score");
+        System.out.printf(Messages.GOAL_CHANCE, team.getName());
 
         int chanceToScore = (team.getOverall() * 100) / totalOverall;
         if (chanceToScore <= (int) (Math.random() * 100)) {
-            System.out.println(team.getName() + " Score a gooooooooooooaaaaaal!!!");
+            System.out.printf(Messages.TEAM_SCORED, team.getName());
             return true;
         }
 
-        System.out.println(team.getName() + " wasted a great chance!!");
+        System.out.printf(Messages.WASTED_CHANCE, team.getName());
         return false;
 
 
@@ -121,13 +122,13 @@ public class Match {
     public Team checkWhoWon() {
 
         if (team1Score > team2Score) {
-            System.out.println(team1.getName() + " has won the game");
+            System.out.printf(Messages.TEAM_WIN, team1.getName());
             winTeamList.add(team1);
             loseTeamList.add(team2);
             return team1;
 
         } else if (team1Score < team2Score) {
-            System.out.println(team2.getName() + " has won the game");
+            System.out.printf(Messages.TEAM_WIN, team2.getName());
             winTeamList.add(team2);
             loseTeamList.add(team1);
             return team2;
@@ -138,21 +139,21 @@ public class Match {
         }
     }
 
-    public void playersDidGoal(Team team) {
-        int randomPlayerGoal = (int) (Math.random() * (3 - 0 + 1) + 0);
-        System.out.println("CONGRATULATION: " + team.choosePlayer(randomPlayerGoal).getName().toUpperCase());
+    public void playerScore(Team team) {
+        int randomPlayerGoal = RandomGenerator.generateRandom(0, 3);
+        System.out.printf(Messages.PLAYER_SCORED, team.choosePlayer(randomPlayerGoal).getName().toUpperCase());
     }
 
 
     public void penalties() {
 
-        int penaltiesWinner = (int) (Math.random() * 3);
+        int penaltiesWinner = RandomGenerator.generateRandom(0, 1);
         if (penaltiesWinner == 1) {
-            System.out.println(team1.getName() + " won the game after the penalties");
+            System.out.printf(Messages.TEAM_WIN_PENALTIES, team1.getName());
             winTeamList.add(team1); // alterado sujeito a aprovaçao de Angelo
 
         } else {
-            System.out.println(team2.getName() + " won the game after penalties");
+            System.out.printf(Messages.TEAM_WIN_PENALTIES, team2.getName());
             winTeamList.add(team2); // alterado sujeito a aprovaçao de Angelo
 
 
