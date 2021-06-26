@@ -2,8 +2,8 @@ package academy.mindswap.players;
 
 public enum Position {
 
-    GOOLKEEPER,
-    DEFENCER,
-    MIDFIELD,
+    GOALKEEPER,
+    DEFENDER,
+    MIDFIELDER,
     STRIKER,
 }

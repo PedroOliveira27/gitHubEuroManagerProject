@@ -2,33 +2,83 @@ package academy.mindswap.Game;
 
 import academy.mindswap.teams.Team;
 import academy.mindswap.teams.TeamHandler;
+import academy.mindswap.util.Messages;
+import academy.mindswap.util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    List<Team> createGroup = new ArrayList<>();
+    Groups group;
 
 
-    public void ChooseTeam (String teamName){
-        if (teamName.equals("Portugal")){
-            Team team = TeamHandler.createTeam(new Team("Portugal"),TeamHandler.portugal);
-            createGroup.add(team);
+    public Game() {
+        group = new Groups();
+    }
+
+    public Game(Groups group) {
+        this.group = group;
+    }
+
+
+    public Team RandomGame() {
+
+        Team firstTeam;
+        int FirstTeamPlay = RandomGenerator.generateRandom(0, 3);
+        firstTeam = group.createGroup.get(FirstTeamPlay);
+        return firstTeam;
+    }
+
+    public void play() {
+        group.ChooseTeam("Portugal");
+        group.ChooseTeam("France");
+        group.ChooseTeam("Hungary");
+        group.ChooseTeam("Germany");
+        Team team1 = null;
+        Team team2 = null;
+        Team team3 = null;
+        Team team4 = null;
+        team1 = randomTeam(team1);
+//        System.out.println(team1.getName());
+        team2 = randomTeam(team1);
+//        System.out.println(team2.getName());
+        team3 = randomTeam(team1);
+//        System.out.println(team3.getName());
+        team4 = randomTeam(team1);
+//        System.out.println(team4.getName());
+        if (team1 != team2 && team1 != team3 && team1 != team4 && team2 != team3 && team2 != team4 && team3 != team4) {  // alterado sujeito a aprovaçao de Angelo
+            Match match = new Match(team1, team2);
+            Match match1 = new Match(team3, team4);
+            match.start();
+            match1.start();
+            Match match2 = new Match(match.getWinTeamList().get(0), match1.getWinTeamList().get(0));
+            System.out.printf(Messages.START_FINAL);
+            match2.start();
+            System.out.printf(Messages.END_FINAL, match2.getWinTeamList().get(0).getName());
+            return;
+
         }
-        if (teamName.equals("Germany")){
-            Team team = TeamHandler.createTeam(new Team("Germany"),TeamHandler.germany);
-            createGroup.add(team);
-        }
-        if (teamName.equals("France")){
-            Team team = TeamHandler.createTeam(new Team("France"),TeamHandler.france);
-            createGroup.add(team);
-        }
-        if (teamName.equals("Hungry")){
-            Team team = TeamHandler.createTeam(new Team("Hungary"),TeamHandler.hungary);
-            createGroup.add(team);
-        }
+        play(); //alterado sujeito a aprovaçao de Angelo
 
     }
+
+    public Team randomTeam(Team team) {
+        Team team1 = RandomGame();
+        while (team1 == team) {
+            team1 = RandomGame();
+        }
+        return team1;
+    }
+
+
+//
+//    public void knockoutStages(Match match2) {
+//      match2 = new Match(match2.getWinTeamList().get(0), match2.getWinTeamList().get(1));
+//
+//        match2.start();
+//
+//
+//    }
 
 
 }
