@@ -1,5 +1,9 @@
 package academy.mindswap.server;
 
+import academy.mindswap.Game.Game;
+import academy.mindswap.server.messages.ServerMessages;
+import academy.mindswap.teams.Team;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -31,18 +35,15 @@ public class GameServer {
 			Socket clientSocket = serverSocket.accept();
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			out.println("""
-					---------------------------------
-					|    WELCOME TO EURO MANAGER    |
-					---------------------------------
-					""");
+			out.println(ServerMessages.WELCOME_SCREEN);
 			String username = chooseUserName();
+
 			service.submit(new ClientHandler(clientSocket, username));
 		}
 	}
 
 	private String chooseUserName() throws IOException {
-		out.println("Choose your username: ");
+		out.println(ServerMessages.CHOOSE_USERNAME);
 		String username = in.readLine();
 		if (!(isUserNameAvailable(username))) {
 			chooseUserName();
@@ -54,19 +55,21 @@ public class GameServer {
 
 	private boolean isUserNameAvailable(String username) {
 		if (!(usernames.add(username))) {
-			out.println(username + " is not available. Choose another one.");
+			out.println(username + ServerMessages.UNAVAILABLE_USERNAME);
 			return false;
 		} else {
-			out.println("Welcome, " + username);
+			out.println(ServerMessages.WELCOME_USERNAME + username);
 			return true;
 		}
 	}
 
 	public class ClientHandler implements Runnable {
 		private String username;
+		private Team team;
 		private Socket clientSocket;
 		private PrintWriter out;
 		private String command;
+		private Game game;
 
 		public ClientHandler(Socket clientSocket, String username) throws IOException {
 			this.username = username;
@@ -78,9 +81,10 @@ public class GameServer {
 		public void run() {
 			try {
 				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-				while (!(clientSocket.isClosed())){
+				printCommands();
+				while (!(clientSocket.isClosed())) {
 					command = in.readLine();
-					if(command.equals("")){
+					if (command.equals("")) {
 						return;
 					}
 
@@ -91,9 +95,36 @@ public class GameServer {
 			}
 		}
 
-		public void dealWithCommand(String command){
-
+		private void dealWithCommand(String command) throws IOException {
+			switch (command.toLowerCase().replace("/", "")) {
+				case "play":
+					game = new Game();
+					out.println(ServerMessages.CHOOSE_TEAM);
+					String team = in.readLine();
+					game.ChooseTeam(team);
+				case "help":
+					printCommands();
+					break;
+				case "teams":
+//					printTeams();
+					break;
+				case "lineup":
+//					team.printPlayerList();
+					break;
+				default:
+					out.println(ServerMessages.INVALID_COMMAND);
+					printCommands();
+					break;
+			}
 		}
+
+		private void printCommands() {
+			out.println(ServerMessages.COMMANDS_LIST);
+		}
+
+//		private void printTeams() {
+//			out.println(game.printGroupTeams());
+//		}
 
 		public String getUsername() {
 			return username;
