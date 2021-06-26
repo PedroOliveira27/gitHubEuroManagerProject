@@ -2,6 +2,8 @@ package academy.mindswap.Game;
 
 import academy.mindswap.teams.Team;
 import academy.mindswap.teams.TeamHandler;
+import academy.mindswap.util.Messages;
+import academy.mindswap.util.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,9 @@ public class Game {
 
 
     public Team RandomGame() {
-        int max = 3;
-        int min = 0;
+
         Team firstTeam;
-        int FirstTeamPlay = (int) (Math.random() * (max - min + 1)) + min;
+        int FirstTeamPlay = RandomGenerator.generateRandom(0, 3);
         firstTeam = group.createGroup.get(FirstTeamPlay);
         return firstTeam;
     }
@@ -45,15 +46,15 @@ public class Game {
 //        System.out.println(team3.getName());
         team4 = randomTeam(team1);
 //        System.out.println(team4.getName());
-        if(team1 != team2 && team1 != team3 && team1 != team4 && team2 != team3 && team2 != team4 && team3 != team4) {  // alterado sujeito a aprovaçao de Angelo
+        if (team1 != team2 && team1 != team3 && team1 != team4 && team2 != team3 && team2 != team4 && team3 != team4) {  // alterado sujeito a aprovaçao de Angelo
             Match match = new Match(team1, team2);
             Match match1 = new Match(team3, team4);
             match.start();
             match1.start();
             Match match2 = new Match(match.getWinTeamList().get(0), match1.getWinTeamList().get(0));
-            System.out.println("Welcome to the final!!");
+            System.out.printf(Messages.START_FINAL);
             match2.start();
-            System.out.println(match2.getWinTeamList().get(0).getName() + "  won Euro 2020!!!!!! Congratulations to the champions");
+            System.out.printf(Messages.END_FINAL, match2.getWinTeamList().get(0).getName());
             return;
 
         }
