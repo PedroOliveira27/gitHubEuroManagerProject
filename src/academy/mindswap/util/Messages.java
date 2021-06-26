@@ -1,4 +1,4 @@
-package academy.util;
+package academy.mindswap.util;
 
 public class Messages {
     public static final String START_GAME = "Match day!!!Welcome to the stadium!Today %s is playing against %s\n ";
