@@ -56,7 +56,7 @@ public class TeamHandler {
 			new Players("Hugo Lloris", 33, Position.GOOLKEEPER, 88)
 	);
 
-	private static List<Players> hungary = Arrays.asList(
+	public static List<Players> hungary = Arrays.asList(
 			new Players("Rolland Sallai", 24, Position.STRIKER, 74),
 			new Players("Nemanja Nikolics", 33, Position.STRIKER, 72),
 			new Players("Kevin Varga", 25, Position.STRIKER, 70),
