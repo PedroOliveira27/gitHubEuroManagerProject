@@ -8,10 +8,10 @@ import java.util.List;
 
 public class TeamHandler {
 	/**
-	 * 
+	 * this methods adds the players from each array list to the respective team
 	 * @param team
-	 * @param players
-	 * @return
+	 * @param players the list of players
+	 * @return team with the players
 	 */
 
 	public static Team createTeam(Team team, List<Player> players) {
@@ -21,16 +21,16 @@ public class TeamHandler {
 
 	public static List<Player> portugal = Arrays.asList(
 			new Player("Cristiano Ronaldo", 36, Position.STRIKER, 97),
-			new Player("Bernardo Silva", 26, Position.STRIKER, 88),
-			new Player("Joao Felix", 21, Position.STRIKER, 86),
+			new Player("Bernardo Silva", 26, Position.STRIKER, 91),
+			new Player("Joao Felix", 21, Position.STRIKER, 90),
 			new Player("Joao Moutinho", 34, Position.MIDFIELDER, 88),
-			new Player("Bruno Fernandes", 26, Position.MIDFIELDER, 86),
-			new Player("Ruben Neves", 24, Position.MIDFIELDER, 81),
-			new Player("Nelson Semedo", 27, Position.DEFENDER, 85),
-			new Player("Joao Cancelo", 27, Position.DEFENDER, 84),
-			new Player("Ruben Dias", 24, Position.DEFENDER, 80),
-			new Player("Pepe", 38, Position.DEFENDER, 76),
-			new Player("Rui Patricio", 33, Position.GOALKEEPER, 85)
+			new Player("Bruno Fernandes", 26, Position.MIDFIELDER, 92),
+			new Player("Renato Sanches", 24, Position.MIDFIELDER, 90),
+			new Player("Raphael Guerreiro", 27, Position.DEFENDER, 89),
+			new Player("Joao Cancelo", 27, Position.DEFENDER, 88),
+			new Player("Ruben Dias", 24, Position.DEFENDER, 90),
+			new Player("Pepe", 38, Position.DEFENDER, 90),
+			new Player("Rui Patricio", 33, Position.GOALKEEPER, 88)
 	);
 
 	public static List<Player> germany = Arrays.asList(
@@ -62,16 +62,16 @@ public class TeamHandler {
 	);
 
 	public static List<Player> hungary = Arrays.asList(
-			new Player("Rolland Sallai", 24, Position.STRIKER, 74),
-			new Player("Nemanja Nikolics", 33, Position.STRIKER, 72),
-			new Player("Kevin Varga", 25, Position.STRIKER, 70),
-			new Player("David Siger", 30, Position.MIDFIELDER, 70),
-			new Player("Adam Nagy", 26, Position.MIDFIELDER, 70),
+			new Player("Rolland Sallai", 24, Position.STRIKER, 64),
+			new Player("Nemanja Nikolics", 33, Position.STRIKER, 62),
+			new Player("Kevin Varga", 25, Position.STRIKER, 65),
+			new Player("David Siger", 30, Position.MIDFIELDER, 65),
+			new Player("Adam Nagy", 26, Position.MIDFIELDER, 65),
 			new Player("Laszl Kleinheisler", 27, Position.MIDFIELDER, 66),
-			new Player("Willi Orban", 28, Position.DEFENDER, 78),
-			new Player("Loic Nego", 30, Position.DEFENDER, 74),
-			new Player("Attila Szalai", 23, Position.DEFENDER, 72),
+			new Player("Willi Orban", 28, Position.DEFENDER, 68),
+			new Player("Loic Nego", 30, Position.DEFENDER, 64),
+			new Player("Attila Szalai", 23, Position.DEFENDER, 62),
 			new Player("Gergo Lovrencsics", 32, Position.DEFENDER, 68),
-			new Player("Peter Gulacsi", 31, Position.GOALKEEPER, 82)
+			new Player("Peter Gulacsi", 31, Position.GOALKEEPER, 72)
 	);
 }

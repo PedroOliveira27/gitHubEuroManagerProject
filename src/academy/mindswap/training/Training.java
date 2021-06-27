@@ -7,6 +7,12 @@ import academy.mindswap.util.RandomGenerator;
 
 public class Training {
 
+    /**
+     * This method improves the overall of chosen player.Younger players can
+     * improve their overall far more than older players
+     * @param player to train
+     * @return returns the overall of the play after improvement
+     */
     public static String developPlayers(Player player) {
 
 //        System.out.printf(Messages.PLAYER_TRAINING, player.getName());
