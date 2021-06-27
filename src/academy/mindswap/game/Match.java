@@ -50,7 +50,7 @@ public class Match {
 	/**
 	 * this method represents the full match
 	 * @param maxMatchTime represents the  full match time that can be 90 minutes(regular time)
-	 *                       or 120 minutes(extra time)
+	 *                       or 30 minutes(extra time after the 90 minutes)
 	 * @return the method CheckWhoWon(explained bellow),that checks the winning team
 	 */
 	private Team play(double maxMatchTime) {
@@ -157,7 +157,7 @@ public class Match {
 
 
 	/**
-	 * this method prints the name of the player that score a goal.That player will be a Striker or a Midfielder
+	 * This method prints the name of the player that score a goal.That player will be a Striker or a Midfielder
 	 *  based on their index in the array list.The chosen index is calculated with a
 	 *  random generator between integer 0 - 5
 	 *
@@ -169,7 +169,7 @@ public class Match {
 	}
 
 	/**
-	 * this method simulates a penalties shoot-out that will occur if the teams are tied after the 120 minutes mark
+	 * This method simulates a penalties shoot-out that will occur if the teams are tied after the 120 minutes mark
 	 * the winner will be random decided with a random integer between 0-1
 	 * @return the team that won the penalties and the game
 	 */

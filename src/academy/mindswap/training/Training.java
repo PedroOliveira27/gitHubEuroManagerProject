@@ -37,9 +37,5 @@ public class Training {
 
             return String.format(Messages.IMPROVE_OVERALL, player.getName(), playerDevelopment, player.getOverall());
         }
-
-
     }
-
-
 }
