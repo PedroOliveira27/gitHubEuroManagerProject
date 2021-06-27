@@ -1,6 +1,7 @@
 package academy.mindswap;
 
 import academy.mindswap.Game.Match;
+import academy.mindswap.client.Client;
 import academy.mindswap.server.GameServer;
 import academy.mindswap.teams.Team;
 import academy.mindswap.teams.TeamHandler;

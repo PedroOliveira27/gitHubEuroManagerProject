@@ -32,24 +32,6 @@ public class Game {
 		createMatches();
 	}
 
-
-//	public void play() {
-////		if (team1 != team2 && team1 != team3 && team1 != team4 && team2 != team3 && team2 != team4 && team3 != team4) {  // alterado sujeito a aprovaçao de Angelo
-////			Match match = new Match(team1, team2);
-////			Match match1 = new Match(team3, team4);
-////			match.start();
-////			match1.start();
-////			Match match2 = new Match(match.getWinTeamList().get(0), match1.getWinTeamList().get(0));
-////			System.out.printf(Messages.START_FINAL);
-////			match2.start();
-////			System.out.printf(Messages.END_FINAL, match2.getWinTeamList().get(0).getName());
-////			return;
-////
-////		}
-//		play(); //alterado sujeito a aprovaçao de Angelo
-//
-//	}
-
 	public Team chooseTeam(String teamName) {
 		Team team;
 
@@ -219,6 +201,9 @@ public class Game {
 		return null;
 	}
 
+	public String getFinalMatch(){
+		return finalMatch.getMatch();
+	}
 
 //    public void knockoutStages(Match match2) {
 //      match2 = new Match(match2.getWinTeamList().get(0), match2.getWinTeamList().get(1));
