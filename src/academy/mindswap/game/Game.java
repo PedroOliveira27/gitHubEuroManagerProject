@@ -1,4 +1,4 @@
-package academy.mindswap.Game;
+package academy.mindswap.game;
 
 import academy.mindswap.teams.Team;
 import academy.mindswap.teams.TeamHandler;
@@ -21,7 +21,11 @@ public class Game {
 	private Match finalMatch;
 	private Team euroWinner;
 
-
+	/**
+	 *
+	 * @param out
+	 * @param in
+	 */
 	public Game(PrintWriter out, BufferedReader in) {
 		group = new Group();
 		daysUntilMatch = 3;

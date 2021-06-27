@@ -1,6 +1,6 @@
 package academy.mindswap.server;
 
-import academy.mindswap.Game.Game;
+import academy.mindswap.game.Game;
 import academy.mindswap.players.Player;
 import academy.mindswap.server.messages.ServerMessages;
 import academy.mindswap.teams.Team;

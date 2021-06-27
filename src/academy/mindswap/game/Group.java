@@ -1,4 +1,4 @@
-package academy.mindswap.Game;
+package academy.mindswap.game;
 
 import academy.mindswap.teams.Team;
 import academy.mindswap.teams.TeamHandler;
@@ -9,6 +9,10 @@ import java.util.List;
 public class Group {
 	List<Team> availableTeams = new LinkedList<>();
 
+
+	/** This method is used to create teams and adds them to the list of available teams
+	 *
+	 */
 	public Group() {
 		Team team = TeamHandler.createTeam(new Team("Portugal"), TeamHandler.portugal);
 		availableTeams.add(team);
@@ -20,6 +24,10 @@ public class Group {
 		availableTeams.add(team);
 	}
 
+	/**
+	 * This method prints the list of available teams
+	 * @return returns a string of available teams' names
+	 */
 	public String printAvailableTeams() {
 		String teamList = "";
 		for (Team team : availableTeams) {

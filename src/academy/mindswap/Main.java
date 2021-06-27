@@ -1,13 +1,11 @@
 package academy.mindswap;
 
-import academy.mindswap.Game.Match;
 import academy.mindswap.server.GameServer;
 import academy.mindswap.teams.Team;
 import academy.mindswap.teams.TeamHandler;
 import academy.mindswap.training.Training;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class Main {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package academy.mindswap.Game;
+package academy.mindswap.game;
 
 import academy.mindswap.teams.Team;
 import academy.mindswap.util.Messages;
@@ -13,6 +13,12 @@ public class Match {
 	private int team2Score;
 	private final PrintWriter out;
 
+	/**
+	 * This constructor creates a match between two teams
+	 * @param team1 - team playing
+	 * @param team2 - team playing
+	 * @param out - PrintWriter which holds client socket output stream
+	 */
 
 	public Match(Team team1, Team team2, PrintWriter out) {
 		this.team1 = team1;
@@ -20,6 +26,10 @@ public class Match {
 		this.out = out;
 	}
 
+	/**
+	 * This method starts the match
+	 * @return the winner of the match
+	 */
 	public Team start() {
 		out.println(String.format(Messages.START_GAME,
 				team1.getName(), team2.getName()));
@@ -37,6 +47,12 @@ public class Match {
 		return teamWinner;
 	}
 
+	/**
+	 * this method represents the full match
+	 * @param maxMatchTime represents the  full match time that can be 90 minutes(regular time)
+	 *                       or 120 minutes(extra time)
+	 * @return the method CheckWhoWon(explained bellow),that checks the winning team
+	 */
 	private Team play(double maxMatchTime) {
 		double currentMatchTime = 0;
 		while (currentMatchTime < maxMatchTime) {
@@ -76,11 +92,15 @@ public class Match {
 		return checkWhoWon();
 	}
 
+	/**
+	 * This method gives a team the chance to  score a goal
+	 * @return null when neither team scores or returns the team that score
+	 */
 	private Team aGoalIsScored() {
 		int totalOverall = team1.getOverall() + team2.getOverall();
 
 
-		int teamThatScored = (int) (Math.random() * 2);
+		int teamThatScored = RandomGenerator.generateRandom(0, 1);;
 
 		switch (teamThatScored) {
 			case 0:
@@ -95,6 +115,13 @@ public class Match {
 		return null;
 	}
 
+	/**
+	 * this method calculates the probability of team having a chance to score based
+	 * on their overall and the overall of the team that is playing against
+	 * @param team receives the teams that are playing
+	 * @param totalOverall the sum of the overall of both teams that are playing
+	 * @return returns true when a team converts a chance into a goal and false when a team misses a chance
+	 */
 	private boolean calculateGoalProbability(Team team, int totalOverall) {
 		out.println(String.format(Messages.GOAL_CHANCE, team.getName()));
 		try {
@@ -112,6 +139,10 @@ public class Match {
 		return false;
 	}
 
+	/**
+	 * This methods compares the number of goals of the teams playing
+	 * @return the team that won the game or null if there is a tie
+	 */
 	public Team checkWhoWon() {
 		if (team1Score > team2Score) {
 			out.println(String.format(Messages.TEAM_WIN, team1.getName()));
@@ -124,11 +155,24 @@ public class Match {
 		}
 	}
 
+
+	/**
+	 * this method prints the name of the player that score a goal.That player will be a Striker or a Midfielder
+	 *  based on their index in the array list.The chosen index is calculated with a
+	 *  random generator between integer 0 - 5
+	 *
+	 * @param team that scored a goal
+	 */
 	public void playerScore(Team team) {
-		int randomPlayerGoal = RandomGenerator.generateRandom(0, 3);
+		int randomPlayerGoal = RandomGenerator.generateRandom(0, 5);
 		out.println(String.format(Messages.PLAYER_SCORED, team.choosePlayer(randomPlayerGoal).getName().toUpperCase()));
 	}
 
+	/**
+	 * this method simulates a penalties shoot-out that will occur if the teams are tied after the 120 minutes mark
+	 * the winner will be random decided with a random integer between 0-1
+	 * @return the team that won the penalties and the game
+	 */
 	public Team penalties() {
 
 		int penaltiesWinner = RandomGenerator.generateRandom(0, 1);

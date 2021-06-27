@@ -7,6 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TeamHandler {
+	/**
+	 * 
+	 * @param team
+	 * @param players
+	 * @return
+	 */
 
 	public static Team createTeam(Team team, List<Player> players) {
 		team.addPlayer(players);
