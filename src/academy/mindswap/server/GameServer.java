@@ -1,8 +1,10 @@
 package academy.mindswap.server;
 
 import academy.mindswap.Game.Game;
+import academy.mindswap.players.Player;
 import academy.mindswap.server.messages.ServerMessages;
 import academy.mindswap.teams.Team;
+import academy.mindswap.training.Training;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -70,6 +72,7 @@ public class GameServer {
 		private PrintWriter out;
 		private String command;
 		private Game game;
+		private boolean isInFinal;
 
 		public ClientHandler(Socket clientSocket, String username) throws IOException {
 			this.username = username;
@@ -98,18 +101,31 @@ public class GameServer {
 		private void dealWithCommand(String command) throws IOException {
 			switch (command.toLowerCase().replace("/", "")) {
 				case "play":
-					game = new Game();
-					out.println(ServerMessages.CHOOSE_TEAM);
-					String team = in.readLine();
-					game.ChooseTeam(team);
+					play();
+					break;
 				case "help":
 					printCommands();
 					break;
 				case "teams":
-//					printTeams();
+					printTeams();
 					break;
 				case "lineup":
-//					team.printPlayerList();
+					printLineUp();
+					break;
+				case "train":
+					trainPlayer();
+					break;
+				case "skip":
+					skipDay();
+					break;
+				case "timeline":
+					printTimeLine();
+					break;
+				case "upcoming matches":
+				case "upcoming":
+					printUpComingMatches();
+				case "match":
+					playMatch();
 					break;
 				default:
 					out.println(ServerMessages.INVALID_COMMAND);
@@ -118,20 +134,130 @@ public class GameServer {
 			}
 		}
 
+		private void play() throws IOException {
+			game = new Game(out, in);
+			printTeams();
+			out.println(ServerMessages.CHOOSE_TEAM);
+			boolean invalidTeam = false;
+			while (!invalidTeam) {
+				String teamName = in.readLine();
+				team = game.chooseTeam(teamName.toLowerCase());
+				if (!(isValidTeam(team))) {
+					out.println(ServerMessages.INVALID_TEAM);
+				} else {
+					invalidTeam = true;
+				}
+			}
+			printCommands();
+		}
+
+		private boolean isValidTeam(Team team) {
+			return team != null;
+		}
+
 		private void printCommands() {
 			out.println(ServerMessages.COMMANDS_LIST);
 		}
 
-//		private void printTeams() {
-//			out.println(game.printGroupTeams());
-//		}
-
-		public String getUsername() {
-			return username;
+		private void printTeams() {
+			if (game == null) {
+				out.println(ServerMessages.INVALID_START);
+				return;
+			}
+			out.println(ServerMessages.AVAILABLE_TEAMS + game.printTeams());
 		}
 
-		public String getCommand() {
-			return command;
+		private void printLineUp() {
+			if (team == null) {
+				out.println(ServerMessages.INVALID_START);
+				return;
+			}
+			out.println("\n" + team.getName() + ServerMessages.LINEUP);
+			out.println(game.printLineUp());
+		}
+
+		private void trainPlayer() throws IOException {
+			if (team == null) {
+				out.println(ServerMessages.INVALID_START);
+				return;
+			}
+			if (game.getDaysUntilMatch() < 1) {
+				out.println(ServerMessages.MATCH_DAY);
+				return;
+			}
+			out.println(ServerMessages.TRAINING_TARGET);
+			Player player = null;
+			String playerName = in.readLine();
+			player = team.choosePlayer(playerName);
+			if (player == null) {
+				out.println(ServerMessages.INVALID_PLAYER);
+				return;
+			}
+			out.println(Training.developPlayers(player));
+			game.passDay();
+		}
+
+		private void skipDay() {
+			if (team == null) {
+				out.println(ServerMessages.INVALID_START);
+				return;
+			}
+			if (game.getDaysUntilMatch() == 0) {
+				out.println(ServerMessages.MATCH_DAY);
+				return;
+			}
+			game.passDay();
+			out.println(game.getDaysUntilMatch() + ServerMessages.DAYS_UNTIL_MATCH);
+		}
+
+		private void printTimeLine() {
+			if (team == null) {
+				out.println(ServerMessages.INVALID_START);
+				return;
+			}
+			if (game.getDaysUntilMatch() > 0) {
+				out.println(game.getDaysUntilMatch() + ServerMessages.DAYS_UNTIL_MATCH);
+				return;
+			}
+			if (game.getDaysUntilMatch() == 0) {
+				out.println(ServerMessages.MATCH_DAY);
+			}
+		}
+
+		private void printUpComingMatches() {
+			if (team == null) {
+				out.println(ServerMessages.INVALID_START);
+				return;
+			}
+			out.println(game.printMatches());
+		}
+
+		private void playMatch() throws IOException {
+			if (team == null) {
+				out.println(ServerMessages.INVALID_START);
+				return;
+			}
+			if (game.getDaysUntilMatch() > 0) {
+				out.println(ServerMessages.NOT_MATCH_DAY);
+				out.println(game.getDaysUntilMatch() + ServerMessages.DAYS_UNTIL_MATCH);
+				return;
+			}
+			if (isInFinal) {
+				if(game.playFinal()){
+					run();
+				} else {
+					out.println(ServerMessages.CLOSING_GAME);
+					clientSocket.close();
+				}
+			} else {
+				if (game.play()) {
+					isInFinal = true;
+					printTimeLine();
+					printCommands();
+				} else {
+					run();
+				}
+			}
 		}
 	}
 }

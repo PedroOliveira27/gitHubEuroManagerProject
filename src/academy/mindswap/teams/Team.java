@@ -1,52 +1,50 @@
 package academy.mindswap.teams;
 
-import academy.mindswap.players.Players;
+import academy.mindswap.players.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
 	private String name;
-	private List<Players> team;
+	private List<Player> team;
 
 	public Team(String name) {
 		this.name = name;
 		team = new ArrayList<>();
 	}
 
-	public void printPlayerList() {
-		System.out.println("Starting team for " + name + ":");
-		System.out.println(team.size() + " players.");
-		for (Players p : team) {
-			System.out.println(p.getName() + " | " +
-					p.getOverall() + " | " +
-					p.getPositionType());
+	public String printPlayerList() {
+		String playerList = "";
+		for (Player p : team) {
+			playerList += p.toString() + "\n";
 		}
+		return playerList;
 	}
 
-	public void addPlayer(List<Players> players) {
-		for(Players p : players){
+	public void addPlayer(List<Player> players) {
+		for(Player p : players){
 			team.add(p);
 		}
 	}
 
-	public Players choosePlayer(String playerName) {
-		for(Players p : team){
+	public Player choosePlayer(String playerName) {
+		for(Player p : team){
 			if (p.getName().equals(playerName)){
 				return p;
 			}
 		}
 		return null;
 	}
-	public Players choosePlayer(int playerIndex) {
 
+	public Player choosePlayer(int playerIndex) {
 		return team.get(playerIndex);
 	}
 
 
 	public int getOverall() {
 		int overall = 0;
-		for (Players p : team) {
+		for (Player p : team) {
 			overall += p.getOverall();
 		}
 		return overall / team.size();
@@ -54,5 +52,12 @@ public class Team {
 
 	public String getName() {
 		return name;
+	}
+
+	public boolean isEqual(Team team) {
+		if(this.getName().equals(team.getName())){
+				return true;
+		}
+		return false;
 	}
 }

@@ -1,6 +1,6 @@
 package academy.mindswap.players;
 
-public class Players {
+public class Player {
 
     //PROPERTIES
     private String name;
@@ -8,7 +8,7 @@ public class Players {
     private Position positionType;
     private int overall;
 
-    public Players(String name, int age, Position positionType, int overall) {
+    public Player(String name, int age, Position positionType, int overall) {
         this.name = name;
         this.age = age;
         this.positionType = positionType;
@@ -33,5 +33,13 @@ public class Players {
 
     public void setOverall(int overall) {
         this.overall = overall;
+    }
+
+    @Override
+    public String toString() {
+        return "| " + name + " | " +
+                overall + " | " +
+                positionType + " | " +
+                age;
     }
 }
