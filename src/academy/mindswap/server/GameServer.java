@@ -88,7 +88,7 @@ public class GameServer {
 				while (!(clientSocket.isClosed())) {
 					command = in.readLine();
 					if (command.equals("")) {
-						return;
+						continue;
 					}
 
 					dealWithCommand(command);
@@ -121,7 +121,6 @@ public class GameServer {
 				case "timeline":
 					printTimeLine();
 					break;
-				case "upcoming matches":
 				case "upcoming":
 					printUpComingMatches();
 				case "match":
@@ -185,6 +184,7 @@ public class GameServer {
 				out.println(ServerMessages.MATCH_DAY);
 				return;
 			}
+			printLineUp();
 			out.println(ServerMessages.TRAINING_TARGET);
 			Player player = null;
 			String playerName = in.readLine();
@@ -227,6 +227,10 @@ public class GameServer {
 		private void printUpComingMatches() {
 			if (team == null) {
 				out.println(ServerMessages.INVALID_START);
+				return;
+			}
+			if(isInFinal){
+				out.println(game.getFinalMatch());
 				return;
 			}
 			out.println(game.printMatches());

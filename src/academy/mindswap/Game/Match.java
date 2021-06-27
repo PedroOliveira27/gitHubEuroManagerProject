@@ -141,6 +141,10 @@ public class Match {
 			return team2;
 		}
 	}
+
+	public String getMatch() {
+		return team1.getName() + " is playing against " + team2.getName();
+	}
 }
 
 

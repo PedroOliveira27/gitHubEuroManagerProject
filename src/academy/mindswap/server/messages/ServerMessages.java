@@ -15,7 +15,7 @@ public class ServerMessages {
 			"/train - train a player to increase his overall\n" +
 			"/skip - skip a day\n" +
 			"/timeline - days until your next match\n" +
-			"/upcoming matches - all upcoming matches\n" +
+			"/upcoming - all upcoming matches\n" +
 			"/match - play your match when the day comes\n";
 	public static final String INVALID_COMMAND = "\nInvalid command.";
 	public static final String CHOOSE_USERNAME = "\nChoose your username: ";
