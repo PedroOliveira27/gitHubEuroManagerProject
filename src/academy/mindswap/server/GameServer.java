@@ -1,6 +1,6 @@
 package academy.mindswap.server;
 
-import academy.mindswap.Game.Game;
+import academy.mindswap.game.Game;
 import academy.mindswap.players.Player;
 import academy.mindswap.server.messages.ServerMessages;
 import academy.mindswap.teams.Team;
@@ -24,12 +24,19 @@ public class GameServer {
 	private PrintWriter out;
 	private BufferedReader in;
 
-
+	/**
+	 * this method creates a linked list of clients and a hash set of usernames
+	 */
 	public GameServer() {
 		clients = new LinkedList<>();
 		usernames = new HashSet<>();
 	}
 
+	/**
+	 * This method opens a socket
+	 * @param port to which the client will connect
+	 * @throws IOException
+	 */
 	public void start(int port) throws IOException {
 		serverSocket = new ServerSocket(port);
 		service = Executors.newCachedThreadPool();
