@@ -1,4 +1,4 @@
-package academy.mindswap;
+package academy.mindswap.server;
 
 import academy.mindswap.server.GameServer;
 import academy.mindswap.teams.Team;
@@ -7,13 +7,13 @@ import academy.mindswap.training.Training;
 
 import java.io.IOException;
 
-public class Main {
+public class ServerLauncher {
+	/**
+	 * This method instantiates a new Server. This server
+	 * will then start and wait for connections.
+	 * @param args
+	 */
 	public static void main(String[] args) {
-//		Team portugal = TeamHandler.createTeam(new Team("Portugal"), TeamHandler.portugal);
-//		Team hungary = TeamHandler.createTeam(new Team("Hungary"), TeamHandler.hungary);
-//		PrintWriter out = new PrintWriter(System.out);
-//		Match match = new Match(portugal, portugal, out);
-//		match.start();
 		try {
 			GameServer server = new GameServer();
 			server.start(8080);

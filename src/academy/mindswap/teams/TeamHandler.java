@@ -8,7 +8,8 @@ import java.util.List;
 
 public class TeamHandler {
 	/**
-	 * this methods adds the players from each array list to the respective team
+	 * This methods creates a team and adds the players from
+	 * each array list to the respective team
 	 * @param team
 	 * @param players the list of players
 	 * @return team with the players
